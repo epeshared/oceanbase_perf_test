@@ -52,3 +52,17 @@ set global parallel_servers_target=1152;<br>
 /* change it when number of total core > 64 */<br>
 alter system set net_thread_count = 24;<br>
 
+## Limit CPU and LLC usage
+<br>
+Here is an example of adjusting LLC size:<br>
+#set a policy of using 2 ways of LLC:  <br>
+pqos -e "llc:1=0x0003"<br>
+<br>
+#associate core with policy: <br> 
+pqos -a "llc:1=0-3,48-51,24-27,72-75;"<br>
+<br>
+#reset to default: <br>
+pqos -R<br>
+<br>
+#query how may associative ways of llc: <br>
+getconf -a|grep CACHE<br>
