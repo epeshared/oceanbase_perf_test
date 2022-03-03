@@ -63,6 +63,9 @@ set global parallel_servers_target=1152;<br>
 /* change it when number of total core > 64 */<br>
 alter system set net_thread_count = 24;<br>
 
+## Startup Oceanbase
+numactl --cpunodebind=0 /mnt/nvme4/xtang/oceanbase-master/build_release/src/observer/observer r '127.0.0.1:3882:3881' -o __min_full_resource_pool_memory=268435456,memory_limit='80G',system_memory='4G',datafile_disk_percentage=10,enable_syslog_recycle=True,max_syslog_file_count=4 -z 'zone1' -p 3881 -P 3882 -c 1 -d '/data02/ob_data/spr_test/store' -i 'lo' -l 'ERROR' -- exited code 0
+
 ## Limit CPU and LLC usage
 <br>
 Here is an example of adjusting LLC size:<br>
