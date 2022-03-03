@@ -44,7 +44,7 @@ parallel_max_servers推荐设置为测试租户分配的resource unit cpu数的1
 那么该值设置为260
 parallel_server_target推荐设置为parallel_max_servers * 机器数*0.8
 那么该值为260*3*0.8=624
-*/
+*/<br>
 set global parallel_max_servers=1440;<br>
 set global parallel_servers_target=1152;<br>
 
