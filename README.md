@@ -3,12 +3,13 @@
 ## Performance Test Result
 
 ### sysbench
+1. Read Only (TPS)<br>
 
 | ARCH     | numactl c0    |       |
 |----------|:-------------:|------:|
 | SPR E0   |     16332     |       |
 | ICX      |               |       |
-|          |               |       |
+
 
 ## Oceanbase reousrce configuration
 <br>
