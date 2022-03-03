@@ -1,5 +1,15 @@
 # oceanbase_perf_test
 
+## Performance Test Result
+
+###sysbench
+
+| ARCH     | numactl c0    |       |
+|----------|:-------------:|------:|
+| SPR E0   |     16332     |       |
+| ICX      |               |       |
+|          |               |       |
+
 ## Oceanbase reousrce configuration
 <br>
 创建资源单元<br>
