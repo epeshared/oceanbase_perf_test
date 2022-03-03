@@ -1,5 +1,5 @@
 # oceanbase_perf_test
-"
+'
 ##Oceanbase reousrce configuration
 创建资源单元
 create resource unit sysbench_unit max_cpu 144, max_memory '60G', max_iops 128, max_disk_size 53687091200, max_session_num 64, MIN_CPU=144, MIN_MEMORY='60G', MIN_IOPS=128;
@@ -49,4 +49,4 @@ set global parallel_servers_target=1152;
 
 /* change it when number of total core > 64 */
 alter system set net_thread_count = 24;
-"
+'
