@@ -1,14 +1,14 @@
 # oceanbase_perf_test
 
 ## Oceanbase reousrce configuration
-
+<br>
 创建资源单元<br>
 create resource unit sysbench_unit max_cpu 144, max_memory '60G', max_iops 128, max_disk_size 53687091200, max_session_num 64, MIN_CPU=144, MIN_MEMORY='60G', MIN_IOPS=128;<br>
 创建资源池<br>
 create resource pool sysbench_pool unit = 'sysbench_unit', unit_num = 1, zone_list=('zone1');<br>
 创建租户<br>
 create tenant sysbench_tenant resource_pool_list=('sysbench_pool'), charset=utf8mb4, replica_num=1, zone_list('zone1'), primary_zone=RANDOM, locality='F@zone1' set variables ob_compatibility_mode='mysql', ob_tcp_invited_nodes='%';<br>
-
+<br>
 alter system set enable_auto_leader_switch=false;<br>
 alter system set enable_one_phase_commit=false;<br>
 alter system set weak_read_version_refresh_interval='5s';<br>
@@ -38,6 +38,7 @@ set global ob_query_timeout=36000000000;<br>
 set global ob_trx_timeout=36000000000;<br>
 set global max_allowed_packet=67108864;<br>
 set global ob_sql_work_area_percentage=100;<br>
+<br>
 /*
 parallel_max_servers推荐设置为测试租户分配的resource unit cpu数的10倍
 如测试租户使用的unit配置为：create resource unit $unit_name max_cpu 26
