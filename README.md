@@ -64,7 +64,7 @@ set global parallel_servers_target=1152;<br>
 alter system set net_thread_count = 24;<br>
 
 ## Test script
-1. numactl --cpunodebind=0 /mnt/nvme4/xtang/oceanbase-master/build_release/src/observer/observer r '127.0.0.1:3882:3881' -o __min_full_resource_pool_memory=268435456,memory_limit='80G',system_memory='4G',datafile_disk_percentage=10,enable_syslog_recycle=True,max_syslog_file_count=4 -z 'zone1' -p 3881 -P 3882 -c 1 -d '/data02/ob_data/spr_test/store' -i 'lo' -l 'ERROR' -- exited code 0
+1. cd /data02/ob_data/spr_test;numactl --cpunodebind=0 /mnt/nvme4/xtang/oceanbase-master/build_release/src/observer/observer r '127.0.0.1:3882:3881' -o __min_full_resource_pool_memory=268435456,memory_limit='80G',system_memory='4G',datafile_disk_percentage=10,enable_syslog_recycle=True,max_syslog_file_count=4 -z 'zone1' -p 3881 -P 3882 -c 1 -d '/data02/ob_data/spr_test/store' -i 'lo' -l 'ERROR' -- exited code 0
 2. ../sysbench oltp_read_only.lua --mysql-host=127.0.0.1 --mysql-port=3881 --mysql-db=test --mysql-user=root@sysbench_tenant --table_size=1000000 --tables=30 --threads=64 --report-interval=10 --time=600 run
 
 
