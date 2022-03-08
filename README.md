@@ -5,9 +5,10 @@
 ### sysbench
 1. Read Only (TPS)<br>
 
-| ARCH     | numactl c0    |       |
+| ARCH     | taskset all   |       |
 |----------|:-------------:|------:|
 | SPR E0   |     16332     |       |
+| SPR D0   |     70265     |       |
 | ICX      |               |       |
 
 ## OS setting
