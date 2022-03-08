@@ -10,6 +10,53 @@
 | SPR E0   |     16332     |       |
 | ICX      |               |       |
 
+## OS setting
+
+### task set
+1. 查看CPU 核数
+ *. numactl -H
+2. bind 所有 CPU
+ * taskset -a -pc 0-223 166023 (166023是进程号)
+3. bind 一半 CPU
+ * taskset -a -pc 0-39,112-151,56-105,168-207 166023
+
+### vi /etc/sysctl.conf
+[8:50 AM] Deng, Gang
+fs.file-max = 1000000
+fs.aio-max-nr = 1048576
+kernel.core_uses_pid = 1
+net.core.netdev_max_backlog = 262144
+net.core.rmem_default = 8388608
+net.core.rmem_max = 16777216
+net.core.somaxconn = 32769
+net.core.wmem_default = 8388608
+net.core.wmem_max = 16777216
+net.ipv4.tcp_max_syn_backlog = 262144
+net.ipv4.tcp_rmem = 4096 87380 4194304
+net.ipv4.tcp_sack = 1
+net.ipv4.tcp_keepalive_intvl = 20
+net.ipv4.tcp_keepalive_probes = 3
+net.ipv4.tcp_keepalive_time = 60
+net.ipv4.tcp_fin_timeout = 5
+net.ipv4.tcp_synack_retries = 2
+net.ipv4.tcp_timestamps = 1
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_max_tw_buckets = 262144
+net.ipv4.ip_local_reserved_ports = 5050,5258,5288,6666,6268
+net.ipv4.tcp_syncookies = 0
+net.ipv4.tcp_window_scaling = 1
+net.ipv4.tcp_wmem = 4096 16384 4194304
+net.nf_conntrack_max = 1200000
+net.netfilter.nf_conntrack_max = 1200000
+vm.vfs_cache_pressure = 1024
+vm.swappiness = 0
+vm.overcommit_memory = 1
+vm.zone_reclaim_mode = 0
+vm.max_map_count = 16471966
+vm.min_free_kbytes = 4194304
+
+ulimit -n 10240
+
 
 ## Oceanbase reousrce configuration
 <br>
