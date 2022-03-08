@@ -5,11 +5,11 @@
 ### sysbench
 1. Read Only (TPS)<br>
 
-| ARCH     | taskset all   |       |
-|----------|:-------------:|------:|
-| SPR E0   |     16332     |       |
-| SPR D0   |     70265     |       |
-| ICX      |               |       |
+| ARCH     | taskset all   |   taskset hafl    |
+|----------|:-------------:|------------------:|
+| SPR E0   |     16332     |                   |
+| SPR D0   |     70265     |   70984.70        |
+| ICX      |               |                   |
 
 ## OS setting
 
