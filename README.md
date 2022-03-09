@@ -8,7 +8,7 @@
 | ARCH     | taskset all   |   taskset half    |
 |----------|:-------------:|------------------:|
 | SPR E0   |     16332     |                   |
-| SPR D0   |     70265     |      70984        |
+| SPR D0   |     67278     |                   |
 | ICX      |               |                   |
 
 ## OS setting
