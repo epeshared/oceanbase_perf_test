@@ -134,3 +134,26 @@ pqos -R<br>
 <br>
 #query how may associative ways of llc: <br>
 getconf -a|grep CACHE<br>
+
+## 配置无需密码远程登录
+
+按以下步骤设置无密码 SSH 登录：<br>
+<br>
+在中控机器上运行以下命令查看密钥是否存在：<br>
+ls ~/.ssh/id_rsa.pub<br>
+如果密钥已经存在，则无需生成新的密钥。<br>
+<br>
+#1.（可选）在中控机器上运行以下命令生成 SSH 公钥和私钥：<br>
+ssh-keygen -t rsa<br>
+
+#2.在中控机器上运行以下命令将第一步生成的公钥上传至目标服务器的 .ssh 文件夹：<br>
+scp ~/.ssh/id_rsa.pub root@<server_ip>:~/.ssh/<br>
+<br>
+#3.在目标机器上运行以下命令，将中控机器传入的公钥写到 authorized_keys：<br>
+cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys<br>
+<br>
+#4.在中控机器上运行以下命令登录目标机器：<br>
+ssh root@<server_ip><br>
+<br>
+重复步骤，为每台机器设置无密码登录 SSH。<br>
+
