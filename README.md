@@ -148,7 +148,7 @@ ls ~/.ssh/id_rsa.pub<br>
 ssh-keygen -t rsa<br>
 
 #2.在中控机器上运行以下命令将第一步生成的公钥上传至目标服务器的 .ssh 文件夹：<br>
-scp ~/.ssh/id_rsa.pub root@<server_ip>:~/.ssh/<br>
+scp /root/.ssh/id_rsa.pub root@<server_ip>:/root/.ssh/<br>
 <br>
 #3.在目标机器上运行以下命令，将中控机器传入的公钥写到 authorized_keys：<br>
 cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys<br>
@@ -157,4 +157,33 @@ cat /root/.ssh/id_rsa.pub >> /root/.ssh/authorized_keys<br>
 ssh root@<server_ip><br>
 <br>
 重复步骤，为每台机器设置无密码登录 SSH。<br>
+
+## Config LLC
+调整SPR/ICX核数、频率为相同值，测试在不同核数下的Scaling情况：<br>
+<br>
+a)	调整核数方法：<br>
+Enable core:<br>
+for i in {16..111}; do echo 1 > /sys/devices/system/cpu/cpu$i/online; done<br>
+disable core:<br>
+for i in {16..111}; do echo 0 > /sys/devices/system/cpu/cpu$i/online; done<br>
+<br>
+b)	固定主频方法：<br>
+for i in {16..111}; echo 2700000 > /sys/devices/system/cpu/cpu$i/cpufreq/scaling_max_freq; done //我一般固定到2.7GHz<br>
+<br>
+<br>
+c)	调整L3 Cache的大小：<br>
+每一代CPU Per core 的L3大小一般是固定的，如果减少了CPU的核数，就需要相应地减少L3 Cache的大小。减少L3 Cache大小是通过减少L3 associative way的数量来实现。<br>
+
+距离来说，对于ICX, L3 associative way 是12， per core L3的大小是1.5MB, 38核的ICX就是57MB。 如果要把它变为16核的，那么就需要相应调整L3的大小为： (16/38) *12，然后四舍五入。<br>
+下面是设置需要用到的相关命令：<br>
+set a policy:  pqos -e "llc:1=0x0003"  //per way per bit, it means to use 2 ways (11)<br>
+associate core with policy: pqos -a "llc:1=0-3,48-51,24-27,72-75;"<br>
+reset CAT:  pqos -R<br>
+query how may associative ways of llc: getconf -a|grep CACHE<br>
+query size of each cache: lshw -C memory<br>
+
+d)	调整uncore frequency<br>
+由于不同核数的功耗是不同的，这会影响uncore的频率，所以在测试core scaling时，一般还需要固定uncore frequency，<br>
+pcm-msr.x  -a 0x620 -w 0x1414 //这个命令是设置为2.0GHz,<br>
+
 
