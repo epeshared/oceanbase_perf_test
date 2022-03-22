@@ -119,7 +119,7 @@ set global parallel_max_servers=1440;<br>
 set global parallel_servers_target=1152;<br>
 
 /* change it when number of total core > 64 */<br>
-alter system set net_thread_count = 24;<br>
+alter system set net_thread_count = 36;<br>
 
 ALTER SYSTEM SET _ob_enable_prepared_statement=TRUE;
 
