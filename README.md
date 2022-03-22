@@ -7,7 +7,7 @@
 
 | ARCH                | taskset 100% CPU  | taskset %70 CPU    |
 |---------------------|:-----------------:|-------------------:|
-| SPR E0 (remote)     |67640 (total 192c )|60270               |
+| SPR E0 (remote)     |68237 (total 192c )|60270               |
 | ICX (remote)        |51003 (total 144c )|                    |
 | SPR D0 (localhost)  |77359 (48c/s, 192c)|70253(40c/s, 160c)  |
 
