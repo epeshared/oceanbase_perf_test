@@ -72,7 +72,10 @@ ulimit -n 10240<br>
 ## Oceanbase reousrce configuration
 <br>
 创建资源单元<br>
+* SPR
 create resource unit sysbench_unit max_cpu 144, max_memory '60G', max_iops 128, max_disk_size 53687091200, max_session_num 64, MIN_CPU=144, MIN_MEMORY='60G', MIN_IOPS=128;<br>
+* ICX
+create resource unit sysbench_unit max_cpu 130, max_memory '60G', max_iops 128, max_disk_size 33687091200, max_session_num 64, MIN_CPU=130, MIN_MEMORY='60G', MIN_IOPS=128;
 创建资源池<br>
 create resource pool sysbench_pool unit = 'sysbench_unit', unit_num = 1, zone_list=('zone1');<br>
 创建租户<br>
