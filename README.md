@@ -32,7 +32,7 @@
  * taskset -a -pc 0-39,112-151,56-105,168-207 166023
 
 ### 修改/etc/sysctl.conf
-vi /etc/sysctl.conf
+vi /etc/sysctl.conf<br>
 <br>
 fs.file-max = 1000000 <br>
 fs.aio-max-nr = 1048576 <br>
@@ -69,7 +69,7 @@ vm.min_free_kbytes = 4194304<br>
 <br>
 sysctl -p
 ### ulimit
-ulimit -n 10240<br>
+ulimit -n 655350<br>
 
 
 ## Oceanbase reousrce configuration
