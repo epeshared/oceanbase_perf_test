@@ -33,7 +33,7 @@
 
 ### 修改/etc/sysctl.conf
 vi /etc/sysctl.conf
-`
+<br>
 fs.file-max = 1000000 <br>
 fs.aio-max-nr = 1048576 <br>
 kernel.core_uses_pid = 1<br>
@@ -66,7 +66,7 @@ vm.overcommit_memory = 1<br>
 vm.zone_reclaim_mode = 0<br>
 vm.max_map_count = 16471966<br>
 vm.min_free_kbytes = 4194304<br>
-`
+<br>
 sysctl -p
 ### ulimit
 ulimit -n 10240<br>
