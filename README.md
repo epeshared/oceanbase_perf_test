@@ -31,7 +31,9 @@
 3. bind 一半 CPU
  * taskset -a -pc 0-39,112-151,56-105,168-207 166023
 
-### vi /etc/sysctl.conf
+### 修改/etc/sysctl.conf
+vi /etc/sysctl.conf
+`
 fs.file-max = 1000000 <br>
 fs.aio-max-nr = 1048576 <br>
 kernel.core_uses_pid = 1<br>
@@ -64,7 +66,8 @@ vm.overcommit_memory = 1<br>
 vm.zone_reclaim_mode = 0<br>
 vm.max_map_count = 16471966<br>
 vm.min_free_kbytes = 4194304<br>
-
+`
+sysctl -p
 ### ulimit
 ulimit -n 10240<br>
 
