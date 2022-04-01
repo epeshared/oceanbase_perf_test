@@ -23,6 +23,10 @@
 
 ## OS setting
 
+### Configure Networking Queue
+* ethtool -L $eth1 combined $cnt (设置网卡eth1的quque数为cnt)
+* ethtool -l ens11f0np0 (查看修改是否成功)
+
 ### task set
 1. 查看CPU 核数
  *. numactl -H
