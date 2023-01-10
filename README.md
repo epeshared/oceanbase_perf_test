@@ -192,7 +192,7 @@ for i in {16..111}; echo 2700000 > /sys/devices/system/cpu/cpu$i/cpufreq/scaling
 c)	调整L3 Cache的大小：<br>
 每一代CPU Per core 的L3大小一般是固定的，如果减少了CPU的核数，就需要相应地减少L3 Cache的大小。减少L3 Cache大小是通过减少L3 associative way的数量来实现。<br>
 
-距离来说，对于ICX, L3 associative way 是12， per core L3的大小是1.5MB, 38核的ICX就是57MB。 如果要把它变为16核的，那么就需要相应调整L3的大小为： (16/38) *12，然后四舍五入得5，5的16进制是001F，所以llc:1=0x001F。<br>
+距离来说，对于ICX, L3 associative way 是12， per core L3的大小是1.5MB, 38核的ICX就是57MB。 如果要把它变为16核的，那么就需要相应调整L3的大小为： (16/38) *12，然后四舍五入得5，5就是5个1，即11111，16进制是001F，所以llc:1=0x001F。<br>
 下面是设置需要用到的相关命令：<br>
 set a policy:  pqos -e "llc:1=0x0003"  //per way per bit, it means to use 2 ways (11)<br>
 associate core with policy: pqos -a "llc:1=0-3,48-51,24-27,72-75;"<br>
