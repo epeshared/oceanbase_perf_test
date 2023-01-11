@@ -204,4 +204,7 @@ d)	调整uncore frequency<br>
 由于不同核数的功耗是不同的，这会影响uncore的频率，所以在测试core scaling时，一般还需要固定uncore frequency，<br>
 pcm-msr.x  -a 0x620 -w 0x1414 //这个命令是设置为2.0GHz,<br>
 
+## Resource
+
+https://intel.sharepoint.com/sites/ProcessorCounterMonitor-internal \
 
